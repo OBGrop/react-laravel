@@ -43,9 +43,9 @@ class ProjectsList extends Component {
                     >
                       {task.title}
 
-                      <button className='btn btn-primary btn-sm'>
+                      <Link className='btn btn-primary btn-sm'  to={`/update/${task.id}`}>
                         Mark as completed
-                          </button>
+                          </Link>
                     </li>
                   ))}
                 </ul>

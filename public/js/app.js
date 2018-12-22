@@ -68267,8 +68267,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_404_NotFound__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/404_NotFound */ "./resources/js/react/components/404_NotFound.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./store */ "./resources/js/react/store.js");
-/* harmony import */ var history_createBrowserHistory__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! history/createBrowserHistory */ "./node_modules/history/createBrowserHistory.js");
-/* harmony import */ var history_createBrowserHistory__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(history_createBrowserHistory__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _components_UpdateProject__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/UpdateProject */ "./resources/js/react/components/UpdateProject.js");
+/* harmony import */ var history_createBrowserHistory__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! history/createBrowserHistory */ "./node_modules/history/createBrowserHistory.js");
+/* harmony import */ var history_createBrowserHistory__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(history_createBrowserHistory__WEBPACK_IMPORTED_MODULE_10__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -68298,7 +68299,8 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-var history = history_createBrowserHistory__WEBPACK_IMPORTED_MODULE_9___default()();
+
+var history = history_createBrowserHistory__WEBPACK_IMPORTED_MODULE_10___default()();
 
 var App =
 /*#__PURE__*/
@@ -68326,8 +68328,8 @@ function (_Component) {
         path: "/create",
         component: _components_NewProject__WEBPACK_IMPORTED_MODULE_4__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-        path: "/create",
-        component: _components_NewProject__WEBPACK_IMPORTED_MODULE_4__["default"]
+        path: "/update/:projectId",
+        component: _components_UpdateProject__WEBPACK_IMPORTED_MODULE_9__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         component: _components_404_NotFound__WEBPACK_IMPORTED_MODULE_6__["default"]
       }))))));
@@ -68681,8 +68683,9 @@ function (_Component) {
         return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("li", {
           className: "list-group-item d-flex justify-content-between align-items-center",
           key: task.id
-        }, task.title, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("button", {
-          className: "btn btn-primary btn-sm"
+        }, task.title, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+          className: "btn btn-primary btn-sm",
+          to: "/update/".concat(task.id)
         }, "Mark as completed"));
       })))))));
     }
@@ -68706,6 +68709,89 @@ var mapStateToProps = function mapStateToProps(state) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(mapStateToProps, bindActions)(ProjectsList));
+
+/***/ }),
+
+/***/ "./resources/js/react/components/UpdateProject.js":
+/*!********************************************************!*\
+  !*** ./resources/js/react/components/UpdateProject.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+// resources/assets/js/components/NewProject.js
+
+
+
+var UpdateProject =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(UpdateProject, _Component);
+
+  function UpdateProject(props) {
+    var _this;
+
+    _classCallCheck(this, UpdateProject);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(UpdateProject).call(this, props));
+    _this.state = {
+      name: '',
+      description: '',
+      errors: []
+    };
+    return _this;
+  }
+
+  _createClass(UpdateProject, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {}
+  }, {
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "container py-4"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "row justify-content-center"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "col-md-6"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "card"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "card-header"
+      }, "Update project ID : ", this.props.match.params.projectId || '-'), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "card-body"
+      })))));
+    }
+  }]);
+
+  return UpdateProject;
+}(react__WEBPACK_IMPORTED_MODULE_1__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (UpdateProject);
 
 /***/ }),
 

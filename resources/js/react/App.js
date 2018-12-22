@@ -9,6 +9,7 @@ import ProjectsList from './components/ProjectsList'
 import NotFound from './components/404_NotFound'
 import { Provider } from 'react-redux'
 import store from './store'
+import UpdateProject from './components/UpdateProject'
 import createBrowserHistory from "history/createBrowserHistory";
 
 const history = createBrowserHistory()
@@ -25,7 +26,7 @@ class App extends Component {
                             <Switch>
                                 <Route exact path='/' component={ProjectsList} />
                                 <Route path='/create' component={NewProject} />
-                                <Route path='/create' component={NewProject} />
+                                <Route path='/update/:projectId' component={UpdateProject} />
                                 <Route component={NotFound}/>
                             </Switch>
                         </div>
