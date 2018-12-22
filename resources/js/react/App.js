@@ -17,8 +17,8 @@ class App extends Component {
         return (
             <Provider store={store}>
                 <BrowserRouter>
-                    <HashRouter>
-                        {/* <Router history={history}> */}
+                    {/* <HashRouter> */}
+                    <Router history={history}>
                         <div>
                             <Header />
                             <Switch>
@@ -26,8 +26,8 @@ class App extends Component {
                                 <Route path='/create' component={NewProject} />
                             </Switch>
                         </div>
-                        {/* </Router> */}
-                    </HashRouter>
+                    </Router>
+                    {/* </HashRouter> */}
                 </BrowserRouter>
             </Provider>
         )
