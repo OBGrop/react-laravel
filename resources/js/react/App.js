@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Switch, Router, HashRouter } from 'react-router-d
 import Header from './components/Header'
 import NewProject from './components/NewProject'
 import ProjectsList from './components/ProjectsList'
+import NotFound from './components/404_NotFound'
 import { Provider } from 'react-redux'
 import store from './store'
 import createBrowserHistory from "history/createBrowserHistory";
@@ -24,6 +25,8 @@ class App extends Component {
                             <Switch>
                                 <Route exact path='/' component={ProjectsList} />
                                 <Route path='/create' component={NewProject} />
+                                <Route path='/create' component={NewProject} />
+                                <Route component={NotFound}/>
                             </Switch>
                         </div>
                     </Router>
