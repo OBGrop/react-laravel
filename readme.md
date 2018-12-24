@@ -17,6 +17,14 @@ composer install
 ```bash
 npm install
 ```
+
+### Prerequisites
+
+Be sure to fill in your database details in your `.env` file before running the migrations:
+
+```bash
+php artisan migrate
+```
 start the application:
 ```bash
 php artisan serve
